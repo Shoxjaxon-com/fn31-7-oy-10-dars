@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import icon from "../assets/react.svg";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import "./styles.css";
 import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 import { https } from "../axios";
 import Card from "./Card";
