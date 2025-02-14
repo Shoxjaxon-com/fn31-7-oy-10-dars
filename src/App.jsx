@@ -5,7 +5,7 @@ import Hero from './Componets/Hero'
 
 function App() {
   return (
-   <div className='w-full bg-[#14161A]'>
+   <div className='w-full bg-[#14161A] h-full'>
     <Header />
     <Corusel />
     <Hero />
