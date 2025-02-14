@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination } from '@mui/material';
 import axios from 'axios';
 
 export default function CryptoTable() {
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(10); 
 
   useEffect(() => {
     axios.get('https://api.coingecko.com/api/v3/coins/markets', {
@@ -11,7 +13,7 @@ export default function CryptoTable() {
         vs_currency: 'USD',
         order: 'gecko_desc',
         per_page: 10,
-        page: 1,
+        page: page,
         sparkline: false,
         price_change_percentage: '24h'
       },
@@ -20,7 +22,11 @@ export default function CryptoTable() {
     }).catch(error => {
       console.error('API xatosi:', error);
     });
-  }, []);
+  }, [page]);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
    <div className='container mx-auto text-white'>
@@ -61,6 +67,9 @@ export default function CryptoTable() {
         </TableBody>
       </Table>
     </TableContainer>
+    <div className='flex justify-center mt-4'>
+      <Pagination count={totalPages} page={page} onChange={handleChange} color="primary" />
+    </div>
     </div>
    </div>
   );
